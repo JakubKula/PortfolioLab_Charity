@@ -4,11 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.coderslab.charity.Donation.DonationRepository;
-import pl.coderslab.charity.Institution.Institution;
-import pl.coderslab.charity.Institution.InstitutionRepository;
-
-import java.util.List;
+import pl.coderslab.charity.donation.DonationRepository;
+import pl.coderslab.charity.institution.InstitutionRepository;
 
 @RequiredArgsConstructor
 @Controller
@@ -23,5 +20,10 @@ public class HomeController {
         model.addAttribute("quantity", donationRepository.findAllQuantity());
         model.addAttribute("donationsAmount", donationRepository.findAll().size());
         return "index";
+    }
+
+    @RequestMapping("/admin")
+    public String adminAction(){
+        return "admin/adminLogin";
     }
 }

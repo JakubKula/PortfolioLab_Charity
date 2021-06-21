@@ -171,4 +171,9 @@ document.addEventListener("DOMContentLoaded", function() {
   if (form !== null) {
     new FormSteps(form);
   }
+
+  $(document).ready(function () {
+    var anchor = document.getElementById('@form.form1');
+    anchor.scrollIntoView(true);
+  });
 });

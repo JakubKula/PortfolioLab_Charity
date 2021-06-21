@@ -1,4 +1,4 @@
-package pl.coderslab.charity.Institution;
+package pl.coderslab.charity.institution;
 
 import lombok.Data;
 
@@ -14,5 +14,10 @@ public class Institution {
     private Long id;
     private String name;
     private String description;
+
+    public String getInstitutionAll() {
+
+        return "Fundacja \"" +  name  + "\" \n Cel i misja: " + description;
+    }
 
 }
