@@ -45,7 +45,7 @@
   </div>
 
 
-<section class="form--steps">
+<section class="form--steps" id="form">
   <div class="form--steps-instructions">
     <div class="form--steps-container">
       <h3>Ważne!</h3>
@@ -58,15 +58,15 @@
 
   <div class="form--steps-container">
     <div class="form--steps-counter">Krok <span>2</span>/4</div>
-
+    <form:form method="post" modelAttribute="donation" action="/donation/form2">
       <!-- STEP 2 -->
-      <div class="active" id="form">
+      <div class="active" >
         <h3>Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:</h3>
 
         <div class="form-group form-group--inline">
-          <label style="padding: 0 15px;">
-            <h4>Liczba 60l worków:</h4>
-              <form:form method="post" modelAttribute="donation" action="/donation/form2" cssClass="form-group form-group--inline">
+          <label >
+            Liczba 60l worków:
+
                 <form:input type="number" path="quantity" step="1" min="1" required="true" cssStyle="  border: 1px solid #3c3c3c;
                                                                                                         background: transparent;
                                                                                                         padding: 4px 14px;
@@ -75,21 +75,20 @@
                                                                                                         resize: none;
                                                                                                         font-size: 1.8rem;"/>
                 <form:errors path="quantity"/>
-
           </label>
         </div>
 
         <div class="form-group form-group--buttons">
           <button type="button" class="btn prev-step"><a href="/donation/form1"/>Wstecz</button>
           <button type="submit" class="btn next-step">Dalej</button>
-          </form:form>
         </div>
+        </form:form>
       </div>
   </div>
 </section>
 
 <%@include file="../footer.jsp"%>
 
-<script src="<c:url value="resources/js/app.js"/>"></script>
+<script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
 </html>

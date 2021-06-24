@@ -45,7 +45,7 @@
   </div>
 
 
-<section class="form--steps">
+<section class="form--steps" id="form">
   <div class="form--steps-instructions">
     <div class="form--steps-container">
       <h3>Ważne!</h3>
@@ -59,27 +59,49 @@
   <div class="form--steps-container">
     <div class="form--steps-counter">Krok <span>3</span>/4</div>
 
+    <form action="/donation/form3" method="post">
       <!-- STEP 3 -->
-      <div class="active" id="form">
+      <div class="active" >
         <h3>Wybierz organizacje, której chcesz pomóc:</h3>
-        <div class="form-group form-group--checkbox">
-          <label>
-             <span class="description">
-               <span class="checkbox radio"></span>
-          <form:form method="post" modelAttribute="donation" action="/donation/form3" cssClass="form-group form-group--checkbox">
-               <span class="checkbox radio"></span>
-            <form:radiobuttons path="institution" items="${institution}" itemLabel="institutionAll" itemValue="id" required="true"  cssClass="title subtitle form-group--checkbox" cssStyle="border-radius: 50%;  -webkit-box-sizing: border-box;
-                                                                                                                                             box-sizing: border-box;
-                                                                                                                                             padding: 0;"/>
 
-              <form:errors path="institution"/>
-               </span>
-          </label>
-        </div>
-        <div class="form-group form-group--buttons">
-          <button type="button" class="btn prev-step"><a href="/donation/form2"/>Wstecz</button>
-          <button type="submit" class="btn next-step">Dalej</button>
-          </form:form>
+          <c:forEach var="institution" items="${institution}">
+            <div class="form-group form-group--checkbox">
+              <label>
+                <input type="radio" name="organization" value="${institution.id}" id="organization"/>
+                <span class="checkbox radio"></span>
+                <span class="description">
+                      <div class="title">${institution.name}</div>
+                      <div class="subtitle">
+                        ${institution.description}
+                      </div>
+                    </span>
+              </label>
+            </div>
+          </c:forEach>
+          <div class="form-group form-group--buttons">
+                      <button type="button" class="btn prev-step"><a href="/donation/form2"/>Wstecz</button>
+                      <button type="submit" class="btn next-step">Dalej</button>
+          </div>
+          </form>
+
+<%--        <div class="form-group form-group--checkbox">--%>
+<%--          <label>--%>
+<%--             <span class="description">--%>
+<%--               <span class="checkbox radio"></span>--%>
+<%--          <form:form method="post" modelAttribute="donation" action="/donation/form3" cssClass="form-group form-group--checkbox">--%>
+<%--               <span class="checkbox radio"></span>--%>
+<%--            <form:radiobuttons path="institution" items="${institution}" itemLabel="institutionAll" itemValue="id" required="true"  cssClass="title subtitle form-group--checkbox" cssStyle="border-radius: 50%;  -webkit-box-sizing: border-box;--%>
+<%--                                                                                                                                             box-sizing: border-box;--%>
+<%--                                                                                                                                             padding: 0;"/>--%>
+
+<%--              <form:errors path="institution"/>--%>
+<%--               </span>--%>
+<%--          </label>--%>
+<%--        </div>--%>
+<%--        <div class="form-group form-group--buttons">--%>
+<%--          <button type="button" class="btn prev-step"><a href="/donation/form2"/>Wstecz</button>--%>
+<%--          <button type="submit" class="btn next-step">Dalej</button>--%>
+<%--          </form:form>--%>
         </div>
       </div>
   </div>
@@ -87,6 +109,6 @@
 
 <%@include file="../footer.jsp"%>
 
-<script src="<c:url value="resources/js/app.js"/>"></script>
+<script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
 </html>

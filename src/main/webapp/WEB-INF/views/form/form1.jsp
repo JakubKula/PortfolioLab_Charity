@@ -45,7 +45,7 @@
   </div>
 
 
-<section class="form--steps">
+<section class="form--steps" id="form">
   <div class="form--steps-instructions">
     <div class="form--steps-container">
       <h3>Ważne!</h3>
@@ -59,30 +59,36 @@
 
   <div class="form--steps-container">
     <div class="form--steps-counter">Krok <span>1</span>/4</div>
-
+      <form action="/donation/form1" method="post">
       <!-- STEP 1: class .active is switching steps -->
-      <div  class="active" id="form">
+      <div  class="active" >
         <h3>Zaznacz co chcesz oddać:</h3>
+        <c:forEach var="category" items="${categories}">
           <div class="form-group form-group--checkbox">
             <label>
-              <form:form method="post" modelAttribute="donation" action="/donation/form1" >
-                <span class="description checkbox">
-                    <form:checkboxes path="categories" items="${categories}" itemLabel="name" itemValue="id" cssClass=" checkbox description form-group form-group--checkbox "/>
-                </span>
-                <form:errors path="categories"/>
+              <input
+                      type="checkbox"
+                      name="categoriesList"
+                      value="${category.id}"
+              />
+              <span class="checkbox"></span>
+              <span class="description"
+              >${category.name}</span
+              >
             </label>
           </div>
-      </div>
+        </c:forEach>
         <div class="form-group form-group--buttons">
           <button type="submit" class="btn next-step">Dalej</button>
-          </form:form>
         </div>
+      </form>
+  </div>
       </div>
   </div>
 </section>
 
 <%@include file="../footer.jsp"%>
 
-<script src="<c:url value="resources/js/app.js"/>"></script>
+<script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
 </html>

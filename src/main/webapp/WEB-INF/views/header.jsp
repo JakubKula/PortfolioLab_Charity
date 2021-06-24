@@ -13,10 +13,18 @@
         <ul class="nav--actions">
             <li class="logged-user">
                 Witaj <sec:authentication property = "principal.username"/>
+                <c:set var="username"><sec:authentication property = "principal.username"/></c:set>
+<%--                <c:out value='${username.substring(0,username.indexOf("@"))}' escapeXml="false"/>--%>
+<%--                <c:out value='${username.indexOf("@")}' escapeXml="false"/>--%>
                 <ul class="dropdown">
                     <li><a href="#">Profil</a></li>
                     <li><a href="#">Moje zbiórki</a></li>
                     <li><a href="/logout">Wyloguj</a></li>
+                    <sec:authorize access="hasRole('ADMIN')">
+                        <li><a href="/institution/all">Instytucje</a></li>
+                        <li><a href="/admin/all">Admini</a></li>
+                        <li><a href="/user/all">Użytkownicy</a></li>
+                    </sec:authorize>
                 </ul>
             </li>
         </ul>

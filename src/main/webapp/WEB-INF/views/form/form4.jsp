@@ -45,7 +45,7 @@
   </div>
 
 
-<section class="form--steps">
+<section class="form--steps" id="form">
   <div class="form--steps-instructions">
     <div class="form--steps-container">
       <h3>Ważne!</h3>
@@ -57,7 +57,7 @@
     <div class="form--steps-counter">Krok <span>4</span>/4</div>
 
       <!-- STEP 4 -->
-      <div class="active" id="form">
+      <div class="active" i>
         <h3>Podaj adres oraz termin odbioru rzeczy przez kuriera:</h3>
 
       <form:form method="post" modelAttribute="donation" action="/donation/form4">
@@ -123,6 +123,6 @@
 
 <%@include file="../footer.jsp"%>
 
-<script src="<c:url value="resources/js/app.js"/>"></script>
+<script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
 </html>

@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.category.Category;
 import pl.coderslab.charity.category.CategoryRepository;
 import pl.coderslab.charity.institution.Institution;
@@ -16,7 +13,9 @@ import pl.coderslab.charity.institution.InstitutionRepository;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -43,22 +42,23 @@ public class DonationController {
         return "form/form1";
     }
 
-    @PostMapping("/form1")
-    public String form1Validation(@Valid Donation donation, BindingResult result, HttpServletRequest request) {
-        if (result.hasErrors()) {
-            return "form/form1";
-        }
-        if(donation.getCategories().size()==0){
-            result.rejectValue("categories", "error.user", "Kategoria nie została wybrana!");
-            return "form/form1";
-        }
-        HttpSession session = request.getSession();
-        if (session.getAttribute("donation") != null) {
-            Donation donation1 = (Donation) session.getAttribute("donation");
-            donation1.setCategories(donation.getCategories());
-        } else {
-            session.setAttribute("donation", donation);
-        }
+    @RequestMapping(value = "/form1", method = RequestMethod.POST)
+    public String form1Validation() {
+//        if (result.hasErrors()) {
+//            return "form/form1";
+//        }
+//        Donation donation1 = (Donation) session.getAttribute("donation");
+//        List<String> categories = Collections.singletonList(request.getParameter("categories"));
+//        List<Category> categoryList = null;
+//        for(String str: categories){
+//            Optional<Category> category = categoryRepository.findById(Long.valueOf((str)));
+//            categoryList.add(category.get());
+//        }
+//        if(categoryList.size()==0){
+//            result.rejectValue("categories", "error.user", "Kategoria nie została wybrana!");
+//            return "form/form1";
+//        }
+//        donation1.setCategories(categoryList);
         return "form/form2";
     }
 
@@ -85,12 +85,14 @@ public class DonationController {
     }
 
     @PostMapping("/form3")
-    public String form3Validation(@Valid Donation donation, BindingResult result, HttpSession session) {
+    public String form3Validation(BindingResult result, HttpSession session, HttpServletRequest request) {
         if (result.hasErrors()) {
             return "form/form3";
         }
         Donation donation1 = (Donation) session.getAttribute("donation");
-        donation1.setInstitution(donation.getInstitution());
+        String id = request.getParameter("organization");
+        Institution institution = institutionRepository.getOne(Long.valueOf(id));
+        donation1.setInstitution(institution);
         return "form/form4";
     }
 

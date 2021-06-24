@@ -44,11 +44,11 @@
     </div>
   </div>
 
-<section class="form--steps">
+<section class="form--steps" id="form">
   <div class="form--steps-container">
 
       <!-- STEP 5 -->
-      <div class="active" id="form">
+      <div class="active" >
         <h3>Podsumowanie Twojej darowizny</h3>
       <form:form method="post" modelAttribute="donation" action="/donation/form5">
         <div class="summary">
@@ -116,6 +116,6 @@
 
 <%@include file="../footer.jsp"%>
 
-<script src="<c:url value="resources/js/app.js"/>"></script>
+<script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
 </html>
