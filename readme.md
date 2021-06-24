@@ -10,3 +10,8 @@ Przed przystąpieniem do pracy  przeczytaj poniższe wskazówki.
 	* Wskazujemy lokalizację katalogu ze sklonowanym projektem i zatwierdzamy.
 	* Następnie w nowym oknie wybieramy: `Import project from external model` i wskazujemy `Maven`
 	* Wybieramy kolejno opcje: `Next –> Next –> Next –> Finish`
+
+	Strona dla oddawania rzeczy dla instytucji charytatywnych (w trakcie tworzenia)
+	
+	Dump SQL -> some_database-dump.sql
+	hasło dla admin@admin.com -> admin
